@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<!-- http://localshost:8080/struts01a/NAMESPACE/ACTIONNAME.action -->
+	<!-- 记忆口诀： URL虽然长，namespace站中央； action name排队尾，action后缀不要忘； extends包继承，action 
+		class做封装； action method找方法，返回值让result忙 -->
+	<package name="demo1" namespace="/day01" extends="struts-default">
+		<!-- struts2-spring-plugin.jar利用helloAction 当做id去Spring容器寻找Bean对象 -->
+		<!-- 走StrutsSpringObjectFactory的try流程，整合方法一(参考ssh-1.jpg) -->
+		<action name="hello" class="helloAction" method="execute">
+			<result>/hello.jsp</result>
+		</action>
+		<!-- 走StrutsSpringObjectFactory的catch流程，整合方法二(参考ssh-2.jpg)，此时生成的Action在容器外 -->
+		<action name="hello1" class="com.test.action.HelloAction1"
+			method="execute">
+			<result>/hello.jsp</result>
+		</action>
+	</package>
+
+
+</struts>
